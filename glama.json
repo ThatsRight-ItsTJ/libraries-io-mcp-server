@@ -1,6 +1,9 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
-  "maintainers": [
-    "ThatsRight-ItsTJ"
-  ]
+  "name": "libraries-io-mcp-server",
+  "description": "Access Libraries.io’s package database via MCP",
+  "repository": "https://github.com/ThatsRight-ItsTJ/libraries-io-mcp-server",
+  "baseUrl": "https://your-hosted-domain.com/mcp",
+  "type": "streamableHttp",
+  "maintainers": ["ThatsRight-ItsTJ"]
 }
