@@ -1,0 +1,68 @@
+{
+  "mcpServers": {
+    "libraries-io": {
+      "command": "uv",
+      "args": [
+        "run",
+        "fastmcp",
+        "run",
+        "src/libraries_io_mcp/server.py"
+      ],
+      "env": {
+        "LIBRARIES_IO_API_KEY": "${env:LIBRARIES_IO_API_KEY}",
+        "LIBRARIES_IO_BASE_URL": "https://libraries.io/api",
+        "LIBRARIES_IO_LOG_LEVEL": "INFO",
+        "RATE_LIMIT_REQUESTS": "60",
+        "RATE_LIMIT_WINDOW": "60"
+      }
+    },
+    "libraries-io-dev": {
+      "command": "uv",
+      "args": [
+        "run",
+        "fastmcp",
+        "dev",
+        "src/libraries_io_mcp/server.py"
+      ],
+      "env": {
+        "LIBRARIES_IO_API_KEY": "${env:LIBRARIES_IO_API_KEY_DEV}",
+        "LIBRARIES_IO_BASE_URL": "https://libraries.io/api",
+        "LIBRARIES_IO_LOG_LEVEL": "DEBUG",
+        "RATE_LIMIT_REQUESTS": "120",
+        "RATE_LIMIT_WINDOW": "60"
+      }
+    },
+    "libraries-io-prod": {
+      "command": "/usr/local/bin/uv",
+      "args": [
+        "run",
+        "fastmcp",
+        "run",
+        "/opt/libraries-io-mcp-server/src/libraries_io_mcp/server.py"
+      ],
+      "env": {
+        "LIBRARIES_IO_API_KEY": "${env:LIBRARIES_IO_API_KEY_PROD}",
+        "LIBRARIES_IO_BASE_URL": "https://libraries.io/api",
+        "LIBRARIES_IO_LOG_LEVEL": "WARNING",
+        "RATE_LIMIT_REQUESTS": "30",
+        "RATE_LIMIT_WINDOW": "60"
+      }
+    },
+    "libraries-io-staging": {
+      "command": "uv",
+      "args": [
+        "run",
+        "fastmcp",
+        "run",
+        "src/libraries_io_mcp/server.py"
+      ],
+      "env": {
+        "LIBRARIES_IO_API_KEY": "${env:LIBRARIES_IO_API_KEY_STAGING}",
+        "LIBRARIES_IO_BASE_URL": "https://staging.libraries.io/api",
+        "LIBRARIES_IO_LOG_LEVEL": "INFO",
+        "RATE_LIMIT_REQUESTS": "60",
+        "RATE_LIMIT_WINDOW": "60"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  libraries-io-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: libraries-io-mcp-server
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Libraries.io API Configuration
+      - LIBRARIES_IO_API_KEY=${LIBRARIES_IO_API_KEY}
+      
+      # Server Configuration
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      
+      # Python Environment
+      - PYTHONPATH=/app/src
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+    volumes:
+      # Optional: Mount configuration files if needed
+      # - ./config:/app/config
+      # Optional: Mount logs for external access
+      # - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - libraries-io-network
+
+  # Optional: Add a reverse proxy for production deployment
+  nginx:
+    image: nginx:alpine
+    container_name: libraries-io-mcp-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - libraries-io-mcp-server
+    networks:
+      - libraries-io-network
+    profiles:
+      - production
+
+networks:
+  libraries-io-network:
+    driver: bridge
+
+# Optional: Add development profile for local development
+profiles:
+  - development
+  - production

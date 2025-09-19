@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "libraries-io": {
+      "command": "uv",
+      "args": [
+        "run",
+        "fastmcp",
+        "run",
+        "src/libraries_io_mcp/server.py"
+      ],
+      "env": {
+        "LIBRARIES_IO_API_KEY": "${env:LIBRARIES_IO_API_KEY}"
+      }
+    }
+  }
+}
