@@ -407,11 +407,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support and questions:
 
-- 📧 Email: support@libraries.io
 - 🐛 Issues: [GitHub Issues](https://github.com/librariesio/libraries-io-mcp-server/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/librariesio/libraries-io-mcp-server/discussions)
 - 📖 Documentation: [Full Documentation](https://librariesio.github.io/libraries-io-mcp-server/)
 
 ---
-
-Made with ❤️ by the Libraries.io team
